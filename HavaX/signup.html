@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HavaX | Kayıt Ol</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #43affc;
+        }
+        .signup-box {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            width: 440px;
+            height: 550px;
+            padding: 30px;
+            background: #f8f8f8;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .signup-header {
+            text-align: center;
+            margin: 20px 0 40px 0;
+            color: #333;
+            font-size: 30px;
+            font-weight: 600;
+        }
+        .input-box .input-field {
+            width: 100%;
+            height: 60px;
+            font-size: 17px;
+            padding: 0 25px;
+            margin-bottom: 15px;
+            border-radius: 30px;
+            border: none;
+            box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.05);
+            outline: none;
+            transition: .3s;
+        }
+        ::placeholder {
+            font-weight: 500;
+            color: #222;
+        }
+        .input-field:focus {
+            width: 105%;
+        }
+        .input-submit {
+            margin-top: 20px;
+        }
+        .submit-btn {
+            width: 100%;
+            height: 60px;
+            background-color: #38B6FF;
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+        }
+        .submit-btn:hover {
+            background: #000;
+            transform: scale(1.05, 1);
+        }
+        .sign-in-link {
+            text-align: center;
+            font-size: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-box">
+        <div class="signup-header">
+            <header>Kayıt Ol</header>
+        </div>
+        <div class="input-box">
+            <input type="email" class="input-field" id="email" placeholder="Email" autocomplete="off" required>
+        </div>
+        <div class="input-box">
+            <input type="password" class="input-field" id="password" placeholder="Şifre" autocomplete="off" required>
+        </div>
+        <div class="input-box">
+            <input type="password" class="input-field" id="confirm-password" placeholder="Şifreyi Onayla" autocomplete="off" required>
+        </div>
+        <div class="input-submit">
+            <button class="submit-btn" id="signup">Kayıt Ol</button>
+        </div>
+        <div class="sign-in-link">
+            <p>Hesabın var mı? <a href="loginscreen.html">Giriş Yap</a></p>
+        </div>
+        <p id="signup-error" style="color: red; text-align: center;"></p>
+        <p id="signup-success" style="color: green; text-align: center;"></p>
+    </div>
+    <script type="module">
+        // Firebase'i içe aktar
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        // Firebase yapılandırması
+        const firebaseConfig = {
+            apiKey: "AIzaSyCg11K5coIEusMesSuYOUez3ScgYXgQUmY",
+            authDomain: "havaxweb.firebaseapp.com",
+            projectId: "havaxweb",
+            storageBucket: "havaxweb.appspot.com",
+            messagingSenderId: "237687605539",
+            appId: "1:237687605539:web:7a92ad04c626ed6be12496"
+        };
+
+        // Firebase'i başlat
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Kayıt işlemi
+        document.getElementById("signup").addEventListener("click", () => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const errorDisplay = document.getElementById('signup-error');
+            const successDisplay = document.getElementById('signup-success');
+
+            if (password !== confirmPassword) {
+                errorDisplay.textContent = 'Şifreler eşleşmiyor.';
+                successDisplay.textContent = '';
+                return;
+            }
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Kayıt başarılı
+                    console.log('Signup successful', userCredential.user);
+                    errorDisplay.textContent = '';
+                    successDisplay.textContent = 'Kayıt başarılı! Giriş yapabilirsiniz.';
+                    // Kayıt başarılı olduğunda yapılacak işlemler
+                })
+                .catch((error) => {
+                    // Kayıt hatalı
+                    console.error('Error signing up', error);
+                    errorDisplay.textContent = `Kayıt Başarısız`;
+                    successDisplay.textContent = '';
+                });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HavaX</title>
+<style>
+body {
+ background-color: #43affc;
+ margin: 0;
+ padding: 0;
+}
+
+.ust-cubuk {
+ height: 80px;
+ background-color: black;
+ width: 100%;
+ position: fixed;
+ top: 0;
+ left: 0;
+}
+
+.sol-blok {
+  background-color: black;
+  width: 200px;
+  height: 80px; 
+  position: fixed;
+  top: 0;
+ left: 220px;
+ background-image: url('logo.png');
+ background-repeat: no-repeat;
+ background-size: contain;
+ background-position: center;
+}
+
+.sekmeler {
+ display: inline-block;
+ margin-top: 20px;
+}
+
+.sekmeler a {
+ color: white;
+ text-decoration: none;
+ padding: 20px;
+}
+
+.icerik {
+ margin-top: 80px;
+ padding: 20px;
+ color: black;
+}
+
+.sekmeler {
+ position: absolute;
+ left: 430px;
+ top: 10px;
+}
+
+.sağ-görsel-konteyner {
+ position: absolute;
+ top: 150px; 
+ right: 250px; 
+}
+
+.new-container {
+ position: absolute;
+ width: 500px;
+ height: 500px;
+ background-color: #43affc;
+ top: 200px; 
+ left: 220px;
+ display: flex;
+ flex-direction: column;
+ justify-content: flex-start;
+ align-items: flex-start;
+}
+
+.metin {
+ color: white;
+ font-size: 75px;
+ text-align: left;
+ line-height: 1.2; 
+}
+
+.alt-metin {
+ color: white;
+ font-size: 25px;
+ text-align: left;
+ margin-top: 25px; 
+ white-space: nowrap; 
+}
+
+.kayit-ol-buton {
+ background-color: white;
+ color: black;
+ border: none;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 20px;
+ margin-top: 20px;
+ cursor: pointer;
+ border-radius: 15px; 
+ margin-left: 65px; 
+ transition: all 0.3s ease; 
+}
+
+
+.kayit-ol-buton:hover {
+ transform: scale(1.2); 
+}
+
+</style>
+</head>
+<body>
+
+<div class="ust-cubuk">
+  <div class="sol-blok"></div>
+  <div class="sekmeler">
+    <a href="index.html">Ana Sayfa</a>
+    <a href="info.html">Hakkımızda</a>
+  </div>
+</div>
+
+<div class="container"></div>
+<div class="container" style="top: 110px; left: auto; right: 50px;"></div>
+<div class="icerik">
+ </div>
+
+<div class="new-container">
+  <div class="metin">
+    Üşüyor Musun?  <br>
+    Anlaşılan<br>
+    Hala HavaX<br>
+    Kullanmıyorsun!<br>
+
+  </div>
+  <div class="alt-metin">Yapay zeka destekli ilk hava durumu sitesi.</div>
+  <a href="loginscreen.html" class="kayit-ol-buton">Giriş Yap</a>
+</div>
+
+<div class="sağ-görsel-konteyner">
+  <img src="images.png" alt="Images">
+</div>
+
+</body>
+</html>
